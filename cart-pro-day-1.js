@@ -1,4 +1,4 @@
-// Get elements
+
 const productForm = document.getElementById("productForm");
 const titleInput = document.getElementById("title");
 const descriptionInput = document.getElementById("description");
@@ -13,7 +13,6 @@ const clearCartButton = document.getElementById("clearCart");
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Add product to the page and to local storage
 function addProduct(e) {
   e.preventDefault();
 
@@ -26,19 +25,15 @@ function addProduct(e) {
     color: colorInput.value,
   };
 
-  // Store product in local storage
   let products = JSON.parse(localStorage.getItem("products")) || [];
   products.push(product);
   localStorage.setItem("products", JSON.stringify(products));
 
-  // Clear form
   productForm.reset();
 
-  // Display products
   displayProducts();
 }
 
-// Display products
 function displayProducts() {
   const products = JSON.parse(localStorage.getItem("products")) || [];
 
@@ -59,7 +54,6 @@ function displayProducts() {
   });
 }
 
-// Add product to cart
 function addToCart(productIndex) {
   const products = JSON.parse(localStorage.getItem("products")) || [];
   const product = products[productIndex];
@@ -70,7 +64,6 @@ function addToCart(productIndex) {
   displayCart();
 }
 
-// Display cart
 function displayCart() {
   cartProductsContainer.innerHTML = "";
   cart.forEach((product, index) => {
@@ -86,18 +79,16 @@ function displayCart() {
   });
 }
 
-// Clear cart
 function clearCart() {
   cart = [];
   localStorage.setItem("cart", JSON.stringify(cart));
   displayCart();
 }
 
-// Event listeners
 productForm.addEventListener("submit", addProduct);
 clearCartButton.addEventListener("click", clearCart);
 
-// Initial display
+
 displayProducts();
 displayCart();
 
